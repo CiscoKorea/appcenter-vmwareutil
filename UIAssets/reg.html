@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Setup vCenter Account Info</title>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+        <link rel="stylesheet" href="assets/css/bootstrap-table.css">
+
+        <script src="assets/js/jquery.min.js"></script>
+        <script src="assets/js/bootstrap.min.js"></script>
+        <script src="assets/js/bootstrap-table.min.js"></script>
+        <script src="assets/js/extensions/tree-column/bootstrap-table-tree-column.js"></script>
+        <script src="assets/js/extensions/group-by-v2/bootstrap-table-group-by.js"></script>
+    </head>
+    <body>
+    <div class="container">
+        <p> Please input your VMWare vCenter Account </p>
+        <p id="account_message"></p>
+         
+          <div class="form-group">
+            <label for="vcenter">vCenter IP:</label>
+            <input type="text" class="form-control" id="vcenter" name="vcenter" value="">
+          </div>     
+          <div class="form-group">
+            <label for="username">Username:</label>
+            <input type="text" class="form-control" id="username" name="username" value="">
+          </div>
+          <div class="form-group">
+            <label for="pwd">Password:</label>
+            <input type="password" class="form-control" id="pwd" name="password" value="">
+          </div>
+          <button id="submit" class="btn btn-default">Save</button>
+
+    </div>
+    <div>
+<script>
+var $regUrl = document.location.origin + '/appcenter/Cisco/VMWareUtil/reg.json';
+$(function() {
+    $('#submit').on('click', function(myform) {
+
+        $.ajax({
+            url: $regUrl,
+            data: 'vcenter=' + $('#vcenter').val()+'&username='+$('#username').val()+'&password='+$('#pwd').val(),
+            type: 'GET',
+            dataType: 'json',
+            success: function(resp) {
+                console.log( resp);
+                if (resp.status == 'OK') {
+                  alert('Redirect main page');
+                  window.location.href = 'app.html';
+                } else {
+                  alert('Failed to save Account Information !!!');
+                }
+            }
+        });
+    });
+
+    $.ajax({
+        url: document.location.origin + '/appcenter/Cisco/VMWareUtil/config.json',
+        type: 'GET',
+        dataType: 'json',
+        success: function(account) {
+            $('#account_message').val(account.message);
+                $('#vcenter').val(account.vcenter);
+                $('#username').val(account.username);
+                $('#pwd').val(account.pwd);
+        }
+    });
+});
+</script>
+
+    </div>    
+    </body>
+</html>

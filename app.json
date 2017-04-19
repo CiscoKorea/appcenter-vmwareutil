@@ -1,0 +1,32 @@
+{
+    "api":{
+        "config.json":"get VMWare Account information & update configuration",
+        "hosts.json":"list all hosts",
+        "index.html":"main page",
+        "portgroups.json":"list all port groups on specific host",
+        "reg.json":"config vmware account information",
+        "vm.json":"update port group of specific virtual machine",
+        "vms.json":"list all virtual machines"
+    },
+    "apicversion":"2.2(1a)",
+    "appid":"VMWareUtil",
+    "author":"Hyung-Soo Kim",
+    "category":[
+        "Tools and Utilities"
+    ],
+    "contact":{
+        "contact-email":"hyungsok@cisco.com",
+        "contact-phone":"82-10-54302441",
+        "contact-url":"http://www.cisco.com/aci/"
+    },
+    "iconfile":"VMWarePortGroupUtil.png",
+    "name":"VMWareUtilApp",
+    "permissions":[
+        "tenant-epg"
+    ],
+    "permissionslevel":"read",
+    "shortdescr":"This app enables to update VM's portgroup via VMWare vCenter API.",
+    "vendor":"Cisco",
+    "vendordomain":"Cisco",
+    "version":"1.0"
+}
